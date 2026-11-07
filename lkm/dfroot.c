@@ -19,22 +19,24 @@ typedef int  (*insn_patch_t)(void *addrs[], u32 insns[], int cnt);
 
 static insn_patch_t insn_patch_text;
 
-static __nocfi void patch_fn_ret_zero(void *fn)
-{
-    void *addrs[3];
-    u32 insns[3];
+// This is the function that causes the kernel panic on OPLUS devices!
 
-    addrs[0] = fn;
-    addrs[1] = (u8 *)fn + 4;
-    addrs[2] = (u8 *)fn + 8;
+// static __nocfi void patch_fn_ret_zero(void *fn)
+// {
+//     void *addrs[3];
+//     u32 insns[3];
 
-    insns[0] = 0xD503245F;  // BTI C  (valid landing pad, NOP when BTI not enforced)
-    insns[1] = 0xD2800000;  // MOV x0, #0
-    insns[2] = 0xD65F03C0;  // RET
+//     addrs[0] = fn;
+//     addrs[1] = (u8 *)fn + 4;
+//     addrs[2] = (u8 *)fn + 8;
 
-    if (insn_patch_text(addrs, insns, 3))
-        pr_warn("dfroot: patch failed at %px\n", fn);
-}
+//     insns[0] = 0xD503245F;  // BTI C  (valid landing pad, NOP when BTI not enforced)
+//     insns[1] = 0xD2800000;  // MOV x0, #0
+//     insns[2] = 0xD65F03C0;  // RET
+
+//     if (insn_patch_text(addrs, insns, 3))
+//         pr_warn("dfroot: patch failed at %px\n", fn);
+// }
 
 static int __nocfi __init dfroot_init(void)
 {
@@ -111,7 +113,7 @@ static int __nocfi __init dfroot_init(void)
         if (!avc_fn)
             pr_err("dfroot: avc_has_perm not found, skipping\n");
         else {
-            patch_fn_ret_zero(avc_fn);
+            // patch_fn_ret_zero(avc_fn);
             pr_info("dfroot: avc_has_perm patched\n");
         }
 
@@ -119,7 +121,7 @@ static int __nocfi __init dfroot_init(void)
         if (!avc_noaudit_fn)
             pr_err("dfroot: avc_has_perm_noaudit not found, skipping\n");
         else {
-            patch_fn_ret_zero(avc_noaudit_fn);
+            // patch_fn_ret_zero(avc_noaudit_fn);
             pr_info("dfroot: avc_has_perm_noaudit patched\n");
         }
     }
@@ -129,7 +131,7 @@ static int __nocfi __init dfroot_init(void)
     if (!oplus_exe_fn)
         pr_err("dfroot: oplus_exe_block_ret_handler not found, skipping\n");
     else {
-        patch_fn_ret_zero(oplus_exe_fn);
+        // patch_fn_ret_zero(oplus_exe_fn);
         pr_info("dfroot: oplus_exe_block_ret_handler patched\n");
     }
 
@@ -137,7 +139,7 @@ static int __nocfi __init dfroot_init(void)
     if (!oplus_root_fn)
         pr_err("dfroot: oplus_root_check_post_handler not found, skipping\n");
     else {
-        patch_fn_ret_zero(oplus_root_fn);
+        // patch_fn_ret_zero(oplus_root_fn);
         pr_info("dfroot: oplus_root_check_post_handler patched\n");
     }
 
@@ -146,7 +148,7 @@ static int __nocfi __init dfroot_init(void)
     if (!defex_enforce_fn)
         pr_err("dfroot: task_defex_enforce not found, skipping\n");
     else {
-        patch_fn_ret_zero(defex_enforce_fn);
+        // patch_fn_ret_zero(defex_enforce_fn);
         pr_info("dfroot: task_defex_enforce patched\n");
     }
 
@@ -154,7 +156,7 @@ static int __nocfi __init dfroot_init(void)
     if (!defex_umh_fn)
         pr_err("dfroot: task_defex_user_exec not found, skipping\n");
     else {
-        patch_fn_ret_zero(defex_umh_fn);
+        // patch_fn_ret_zero(defex_umh_fn);
         pr_info("dfroot: task_defex_user_exec patched\n");
     }
 
