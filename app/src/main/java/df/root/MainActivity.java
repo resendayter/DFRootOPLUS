@@ -1,4 +1,4 @@
-package df.root;
+package df.root.oplus;
 
 import android.app.Activity;
 import android.content.Context;
@@ -59,7 +59,7 @@ public class MainActivity extends Activity implements IReporter {
         mDeCtx = createDeviceProtectedStorageContext();
         setContentView(R.layout.activity_main);
 
-        getActionBar().setSubtitle("@diabl0w github/xda");
+        getActionBar().setSubtitle("@resendayter; og dfroot by @diabl0w");
 
         btnRun = findViewById(R.id.btnRun);
         outputScroll = findViewById(R.id.outputScroll);

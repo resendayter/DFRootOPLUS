@@ -4,18 +4,18 @@
     <SwitchPreference
         android:key="boot_start"
         android:title="Start at Boot"
-        android:summary="Automatically run DFRoot on device boot" />
+        android:summary="Automatically run the DirtyFrag exploit on device boot" />
 
     <SwitchPreference
         android:key="soft_reboot"
-        android:title="Auto Soft Reboot"
-        android:summary="Applies to both Manual Start and Start at Boot."
+        android:title="Auto Soft-Reboot"
+        android:summary="Works on both Manual Start and Start at Boot, Also turns on KSU modules after soft-rebooting."
         android:defaultValue="false" />
 
     <SwitchPreference
         android:key="disable_modules"
         android:title="Disable KSU Modules"
-        android:summary="Turn this on if a broken module is crashing your device. The next run will launch with all modules disabled."
+        android:summary="Turn this on if a broken KSU module is crashing your device. The next run will launch with all modules disabled."
         android:defaultValue="false" />
 
 </PreferenceScreen>

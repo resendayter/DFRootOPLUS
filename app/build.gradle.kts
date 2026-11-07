@@ -9,7 +9,7 @@ val signingPropsFile = rootProject.file("signing.properties")
 if (signingPropsFile.exists()) signingProps.load(signingPropsFile.inputStream())
 
 android {
-    namespace = "df.root"
+    namespace = "df.root.oplus"
     compileSdk = 37
 
     buildFeatures {
@@ -17,7 +17,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "df.root"
+        applicationId = "df.root.oplus"
         minSdk = 32
         targetSdk = 37
         versionCode = 407
@@ -75,7 +75,7 @@ android {
 androidComponents {
     onVariants { variant ->
         variant.outputs.forEach { output ->
-            output.outputFileName.set(output.versionName.map { vn -> "DFRoot_${vn}.apk" })
+            output.outputFileName.set(output.versionName.map { vn -> "DFRootOPLUS_${vn}.apk" })
         }
     }
 }
