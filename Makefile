@@ -6,6 +6,9 @@ MAKEFLAGS   += --no-print-directory
 ARCH      := aarch64
 ABI       := arm64-v8a
 ENGINE    := podman
+PODMAN_ROOT    := /tmp/dfroot-podman-storage
+PODMAN_RUNROOT := /tmp/dfroot-podman-run
+PODMAN := $(ENGINE) --root $(PODMAN_ROOT) --runroot $(PODMAN_RUNROOT)
 
 KMIS := \
     android12-5.10 \
@@ -66,7 +69,7 @@ $(LKM_STAMP): $(LKM_SRCS)
 	    printf '\n\033[1;33m▶  PODMAN  %s\033[0m\n' "$$kmi"; \
 	    mkdir -p "$$build_dir/lkm"; \
 	    cp lkm/dfroot.c lkm/Makefile "$$build_dir/lkm/"; \
-	    $(ENGINE) run --rm --pid=host --network=none \
+	    $(PODMAN) run --rm --pid=host --network=none \
 	        -v "$$build_dir":/proj \
 	        -e KMI=$$kmi \
 	        $(DDK_IMAGE):$$kmi-$(DDK_RELEASE) \
