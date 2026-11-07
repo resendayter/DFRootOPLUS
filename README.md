@@ -3,7 +3,7 @@
 </p>
 
 # DFRootOPLUS
-This repo was released to include small fixes for DFRoot that don't kernel panic on OPLUS devices.
+This repo was released to include small fixes for DFRoot that make the exploit work on OPLUS devices without kernel panicking.
 
 ## Credits
 - Original PoC and various code: https://github.com/lsposed/lspromise
